@@ -3817,7 +3817,35 @@ void android_main(struct android_app* app) {
 
             appState.Layers[appState.LayerCount++].Cylinder = cylinder_layer;
         }
+#if 0
+        // Build the Equirect2 layer
+        {
+            XrCompositionLayerEquirect2KHR equirect2_layer = {XR_TYPE_COMPOSITION_LAYER_EQUIRECT2_KHR};
+            equirect2_layer.layerFlags = XR_COMPOSITION_LAYER_BLEND_TEXTURE_SOURCE_ALPHA_BIT;
+            equirect2_layer.space = appState.LocalSpace;
+            equirect2_layer.eyeVisibility = XR_EYE_VISIBILITY_BOTH;
+            memset(&equirect2_layer.subImage, 0, sizeof(XrSwapchainSubImage));
+            equirect2_layer.subImage.swapchain = appState.Scene.QuadSwapChain.Handle;
+            equirect2_layer.subImage.imageRect.offset.x = 0;
+            equirect2_layer.subImage.imageRect.offset.y = 0;
+            equirect2_layer.subImage.imageRect.extent.width = appState.Scene.QuadSwapChain.Width;
+            equirect2_layer.subImage.imageRect.extent.height =
+                appState.Scene.QuadSwapChain.Height;
+            equirect2_layer.subImage.imageArrayIndex = 0;
+            const XrVector3f axis = {0.0f, 1.0f, 0.0f};
+            const XrVector3f pos = {appCylPositionX + 50, appCylPositionY + 50, 0.0f};
+            equirect2_layer.pose.orientation =
+                XrQuaternionf_CreateFromVectorAngle(axis, -45.0f * MATH_PI / 180.0f);
+            equirect2_layer.pose.position = pos;
+            equirect2_layer.radius = 120.0f;
 
+            equirect2_layer.centralHorizontalAngle = 30.0f;
+            equirect2_layer.upperVerticalAngle = 45.0f;
+            equirect2_layer.lowerVerticalAngle = -45.0f;
+
+            appState.Layers[appState.LayerCount++].Equirect2 = equirect2_layer;
+        }
+#endif
         // Build the quad layer
         {
             const XrVector3f axis = {0.0f, 1.0f, 0.0f};

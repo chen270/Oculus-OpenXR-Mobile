@@ -2,6 +2,11 @@
 rootProject.projectDir = new File(settingsDir, '.')
 rootProject.name = "OculusRoot"
 
-include ':'
+include ':', \
+    ':XrSamples:XrCompositor_NativeActivity:Projects:Android', \
+	':XrSamples:XrHandsFB:Projects:Android', \
+	'XrSamples:XrPassthrough:Projects:Android', \
+    ':XrSamples:XrSpaceWarp:Projects:Android', \
+    ':XrSamples:XrSpatialAnchor:Projects:Android'
 
 // Top level settings
