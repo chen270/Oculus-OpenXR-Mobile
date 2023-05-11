@@ -1,5 +1,9 @@
 # Oculus-OpenXR-Mobile
-Documenting the use of openxr on the oculus mobile platform.
+Documenting the use of openxr on the oculus mobile platform. 
+
+current-sdk-version: 51 
+
+</br>
 
 Environment Config:
 1. Android Studio (JDK, SDK), JDK bin folder is on PATH environment variable;
